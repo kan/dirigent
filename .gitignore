@@ -1,3 +1,9 @@
+# Files for development
+.data
+.redis
+sql/local
+tmp
+
 # Binaries for programs and plugins
 *.exe
 *.exe~

@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+    mysql:
+        image: mysql:8.0.17
+        volumes:
+            - ./.data:/var/lib/mysql
+            - ./sql:/sql
+        environment:
+            MYSQL_ROOT_PASSWORD: password
+    redis:
+        image: redis
+        volumes:
+            - ./.redis:/data
+    golang:
+        build: 
+            context: .
+            target: develop
+        volumes:
+            - ./:/app
+        depends_on:
+            - mysql
+            - redis
+        links:
+            - mysql
+            - redis
+        environment:
+            TZ: "UTC"

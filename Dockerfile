@@ -2,6 +2,8 @@ FROM golang:1.17.2 as develop
 
 WORKDIR /app
 COPY . /app
+COPY ./sshd/id_ed25519 /root/.ssh/id_ed25519
+RUN chmod 600 /root/.ssh/id_ed25519
 
 RUN go build
 VOLUME ["/go/pkg/mod"]
